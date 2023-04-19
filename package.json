@@ -1,0 +1,36 @@
+{
+  "name": "visualdlp-api",
+  "version": "1.0.1",
+  "description": "This is an api call constructor for Visual DLP Public API ",
+  "main": "index.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vamuscari/VisualDPL-API.git"
+  },
+  "homepage": "https://github.com/vamuscari/VisualDPL-API/blob/main/README.md",
+  "keywords": [
+    "VisualDLP"
+  ],
+  "author": "Van Muscari",
+  "license": "ISC",
+  "devDependencies": {
+    "@jest/globals": "^29.5.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.1",
+    "zod": "^3.21.4"
+  }
+}
