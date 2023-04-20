@@ -1,15 +1,15 @@
 {
   "name": "visualdlp-api",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "This is an api call constructor for Visual DLP Public API ",
-  "main": "index.js",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "type": "module",
+  "type": "commonjs",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "jest",
     "build": "tsc"
   },
   "repository": {

@@ -5,6 +5,7 @@
 #### Requirements 
 
 - Typescript 5.0.0+!
+- Node 17.5
 
 #### From NPM
 
