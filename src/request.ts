@@ -1,18 +1,16 @@
 import {jsDateToUnixDate} from "./utils";
 import {VDLPOrder} from "./interfaces";
-import {Response} from "node-fetch";
+export type FetchType = 'truncated' |'base'
 class VDLP{
    private auth?: string;
    private readonly baseURL:string = 'https://app.visualdlp.com/PublicApi'
-   private responseType: 'truncated' | 'base' = 'truncated'
+   fetchType: FetchType = "truncated"
 
    setAuth(username:string, password:string ){
       this.auth = 'Basic ' + Buffer.from(username + ':' + password).toString('base64')
       return this
    }
-   setResponseType(responseType: 'truncated' | 'base' ):void{
-      this.responseType = responseType
-   }
+
    constructor(username?:string, password?:string ) {
       if(username && password) this.setAuth(username,password)
    }
@@ -33,24 +31,24 @@ class VDLP{
       })
    }
 
-   GetAccountAgingReport():Promise<any>{
-      return this.fetchPost('/GetAccountAgingReport')
-   }
-   GetActiveAccountAgingReportData(){
-      return this.fetchPost('/GetActiveAccountAgingReportData')
-   }
+   // GetAccountAgingReport():Promise<any>{
+   //    return this.fetchPost('/GetAccountAgingReport')
+   // }
+   // GetActiveAccountAgingReportData(){
+   //    return this.fetchPost('/GetActiveAccountAgingReportData')
+   // }
    GetAccountActivityForAccountingPeriod(AccountPeriod:string){
       const body = {AccountPeriod: AccountPeriod}
-      return this.fetchPost('/GetAccountActivityInDateRange' , body)
+      return this.fetchPost('/GetAccountActivityForAccountingPeriod' , body)
    }
-   GetAccountActivityInDateRange(StartDate:Date, EndDate:Date){
-      const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
-      return this.fetchPost('/GetAccountActivityInDateRange' , body)
-   }
-   GetAccountNotesInDateRange(StartDate:Date, EndDate:Date){
-      const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
-      return this.fetchPost('/GetAccountNotesInDateRange' , body)
-   }
+   // GetAccountActivityInDateRange(StartDate:Date, EndDate:Date){
+   //    const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
+   //    return this.fetchPost('/GetAccountActivityInDateRange' , body)
+   // }
+   // GetAccountNotesInDateRange(StartDate:Date, EndDate:Date){
+   //    const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
+   //    return this.fetchPost('/GetAccountNotesInDateRange' , body)
+   // }
    GetAgedAccountBalanceForOpenTransactions(){
       return this.fetchPost('/GetAgedAccountBalanceForOpenTransactions')
    }
@@ -70,10 +68,10 @@ class VDLP{
       const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
       return this.fetchPost('/GetEmployeeScans' , body)
    }
-   getFeeScheduleForDoctorAndAccount(AccountId:string, DoctorId:string){
-      const body = {AccountId: AccountId , DoctorId: DoctorId}
-      return this.fetchPost('/getFeeScheduleForDoctorAndAccount' , body)
-   }
+   // getFeeScheduleForDoctorAndAccount(AccountId:string, DoctorId:string){
+   //    const body = {AccountId: AccountId , DoctorId: DoctorId}
+   //    return this.fetchPost('/getFeeScheduleForDoctorAndAccount' , body)
+   // }
    GetInvoiceRegister(StartDate:Date, EndDate:Date, AccountId?:string){
       const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
       return this.fetchPost('/GetInvoiceRegister' , body)
@@ -89,10 +87,10 @@ class VDLP{
       const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
       return this.fetchPost<Array<VDLPOrder>>('/GetOrderByShipDate' , body)
    }
-   GetOrderByShipDateDetail(StartDate:Date, EndDate:Date){
-      const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
-      return this.fetchPost<Array<VDLPOrder>>('/GetOrderByShipDateDetail' , body)
-   }
+   // GetOrderByShipDateDetail(StartDate:Date, EndDate:Date){
+   //    const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
+   //    return this.fetchPost<Array<VDLPOrder>>('/GetOrderByShipDateDetail' , body)
+   // }
    GetOrderReportListing(StartDate:Date, EndDate:Date, AccountId?:string){
       const body = {StartDate: jsDateToUnixDate(StartDate) , EndDate: jsDateToUnixDate(EndDate)}
       return this.fetchPost<Array<VDLPOrder>>('/GetOrderReportListing' , body)
@@ -155,11 +153,15 @@ class VDLP{
       const body = {Weeks:Weeks, PercentThreshold:PercentThreshold}
       return this.fetchPost<Array<VDLPOrder>>('/RetentionAnalysis' , body)
    }
-   GetDoctorsList(){
-      return this.fetchGet('/GetDoctorsList')
-   }
-   GetProducts(){}
-   GetProductsPriceList(){}
+   // GetDoctorsList(){
+   //    return this.fetchGet('/GetDoctorsList')
+   // }
+   // GetProducts(){
+   //    return this.fetchGet('/GetProducts')
+   // }
+   // GetProductsPriceList(){
+   //    return this.fetchGet('/GetProductsPriceList')
+   // }
 
 }
 

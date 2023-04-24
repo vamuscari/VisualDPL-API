@@ -41,6 +41,7 @@ export default {
   //   "clover"
   // ],
 
+
   // An object that configures minimum threshold enforcement for coverage results
   // coverageThreshold: undefined,
 
@@ -106,7 +107,12 @@ export default {
   // projects: undefined,
 
   // Use this configuration option to add custom reporters to Jest
-  // reporters: undefined,
+  "reporters": [
+    "default",
+    ["../node_modules/jest-html-reporter", {
+      "pageTitle": "Visual DLP API Report"
+    }]
+  ],
 
   // Automatically reset mock state before every test
   // resetMocks: false,

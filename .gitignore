@@ -12,3 +12,4 @@ deno/lib/playground.ts
 .eslintcache
 workspace.code-workspace
 .netlify
+test-report.html
